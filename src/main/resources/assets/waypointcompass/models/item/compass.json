@@ -1,0 +1,41 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "waypointcompass:items/compass/16"
+    },
+    "overrides": [
+        { "predicate": { "angle": 0.000000 }, "model": "waypointcompass:item/compass" },
+        { "predicate": { "angle": 0.015625 }, "model": "waypointcompass:item/compass/17" },
+        { "predicate": { "angle": 0.046875 }, "model": "waypointcompass:item/compass/18" },
+        { "predicate": { "angle": 0.078125 }, "model": "waypointcompass:item/compass/19" },
+        { "predicate": { "angle": 0.109375 }, "model": "waypointcompass:item/compass/20" },
+        { "predicate": { "angle": 0.140625 }, "model": "waypointcompass:item/compass/21" },
+        { "predicate": { "angle": 0.171875 }, "model": "waypointcompass:item/compass/22" },
+        { "predicate": { "angle": 0.203125 }, "model": "waypointcompass:item/compass/23" },
+        { "predicate": { "angle": 0.234375 }, "model": "waypointcompass:item/compass/24" },
+        { "predicate": { "angle": 0.265625 }, "model": "waypointcompass:item/compass/25" },
+        { "predicate": { "angle": 0.296875 }, "model": "waypointcompass:item/compass/26" },
+        { "predicate": { "angle": 0.328125 }, "model": "waypointcompass:item/compass/27" },
+        { "predicate": { "angle": 0.359375 }, "model": "waypointcompass:item/compass/28" },
+        { "predicate": { "angle": 0.390625 }, "model": "waypointcompass:item/compass/29" },
+        { "predicate": { "angle": 0.421875 }, "model": "waypointcompass:item/compass/30" },
+        { "predicate": { "angle": 0.453125 }, "model": "waypointcompass:item/compass/31" },
+        { "predicate": { "angle": 0.484375 }, "model": "waypointcompass:item/compass/00" },
+        { "predicate": { "angle": 0.515625 }, "model": "waypointcompass:item/compass/01" },
+        { "predicate": { "angle": 0.546875 }, "model": "waypointcompass:item/compass/02" },
+        { "predicate": { "angle": 0.578125 }, "model": "waypointcompass:item/compass/03" },
+        { "predicate": { "angle": 0.609375 }, "model": "waypointcompass:item/compass/04" },
+        { "predicate": { "angle": 0.640625 }, "model": "waypointcompass:item/compass/05" },
+        { "predicate": { "angle": 0.671875 }, "model": "waypointcompass:item/compass/06" },
+        { "predicate": { "angle": 0.703125 }, "model": "waypointcompass:item/compass/07" },
+        { "predicate": { "angle": 0.734375 }, "model": "waypointcompass:item/compass/08" },
+        { "predicate": { "angle": 0.765625 }, "model": "waypointcompass:item/compass/09" },
+        { "predicate": { "angle": 0.796875 }, "model": "waypointcompass:item/compass/10" },
+        { "predicate": { "angle": 0.828125 }, "model": "waypointcompass:item/compass/11" },
+        { "predicate": { "angle": 0.859375 }, "model": "waypointcompass:item/compass/12" },
+        { "predicate": { "angle": 0.890625 }, "model": "waypointcompass:item/compass/13" },
+        { "predicate": { "angle": 0.921875 }, "model": "waypointcompass:item/compass/14" },
+        { "predicate": { "angle": 0.953125 }, "model": "waypointcompass:item/compass/15" },
+        { "predicate": { "angle": 0.984375 }, "model": "waypointcompass:item/compass" }
+    ]
+}

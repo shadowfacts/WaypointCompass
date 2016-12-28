@@ -1,0 +1,16 @@
+[
+	{
+	  "modid": "waypointcompass",
+	  "name": "Waypoint Compass",
+	  "description": "Compass with a changeable position.",
+	  "version": "${version}",
+	  "mcversion": "${mcversion}",
+	  "url": "http://github.com/shadowfacts/WaypointCompass",
+	  "updateUrl": "",
+	  "authorList": ["Shadowfacts"],
+	  "credits": "",
+	  "logoFile": "",
+	  "screenshots": [],
+	  "dependencies": []
+	}
+]
