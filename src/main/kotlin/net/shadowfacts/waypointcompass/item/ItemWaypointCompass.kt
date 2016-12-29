@@ -44,24 +44,25 @@ object ItemWaypointCompass: Item(), ItemModelProvider {
 				} else {
 					val flag = entityIn != null
 					val entity = (if (flag) entityIn else stack.itemFrame) as Entity
-					val world = world ?: entity.world!!
+					val world = world ?: entity.world
 
 					var d0: Double
 
 					if (stack.hasWaypoint && stack.waypointDimension == world.provider.dimension) {
 						var d1 = if (flag) entity.rotationYaw.toDouble() else getFrameRotation(entity as EntityItemFrame)
-						d1 = MathHelper.positiveModulo(d1 / 360.0, 1.0)
-						val d2 = getAngle(entity, stack) / (Math.PI * 2.0)
-						d0 = 0.5 - (d1 - 0.25 - d2)
+						d1 %= 360.0
+						val d2 = getAngle(entity, stack)
+						d0 = Math.PI - ((d1 - 90.0) * 0.01745329238474369 - d2)
 					} else {
-						d0 = Math.random()
+						d0 = Math.random() * (Math.PI * 2.0)
 					}
 
 					if (flag) {
-						d0 = wobble(world, d0)
+						d0 = this.wobble(world, d0)
 					}
 
-					return MathHelper.positiveModulo(d0.toFloat(), 1f)
+					val f = (d0 / (Math.PI * 2.0)).toFloat()
+					return MathHelper.positiveModulo(f, 1.0f)
 				}
 			}
 
@@ -69,10 +70,11 @@ object ItemWaypointCompass: Item(), ItemModelProvider {
 				if (world.totalWorldTime != this.lastUpdateTick) {
 					this.lastUpdateTick = world.totalWorldTime
 					var d0 = d - this.rotation
-					d0 = MathHelper.positiveModulo(d0 + 0.5, 1.0) - 0.5
+					d0 %= (Math.PI * 2.0)
+					d0 = MathHelper.clamp(d0, -1.0, 1.0)
 					this.rota += d0 * 0.1
 					this.rota *= 0.8
-					this.rotation = MathHelper.positiveModulo(this.rotation + this.rota, 1.0)
+					this.rotation += this.rota
 				}
 
 				return this.rotation
@@ -89,8 +91,9 @@ object ItemWaypointCompass: Item(), ItemModelProvider {
 		})
 	}
 
-	override fun onItemRightClick(world: World, player: EntityPlayer, hand: EnumHand): ActionResult<ItemStack> {
-		val stack = player.getHeldItem(hand)
+
+
+	override fun onItemRightClick(stack: ItemStack, world: World, player: EntityPlayer, hand: EnumHand): ActionResult<ItemStack> {
 		if (player.isSneaking) {
 			stack.waypoint = player.position
 			stack.waypointDimension = player.dimension

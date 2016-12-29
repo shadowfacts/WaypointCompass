@@ -23,7 +23,7 @@ object ClientEventHandler {
 		if (Config.renderWaypointInWorld) {
 			val player = Minecraft.getMinecraft().player
 			val world = Minecraft.getMinecraft().world
-			val compass = if (player.heldItemMainhand.item == ItemWaypointCompass) player.heldItemMainhand else if (player.heldItemOffhand.item == ItemWaypointCompass) player.heldItemOffhand else null
+			val compass = if (player.heldItemMainhand?.item == ItemWaypointCompass) player.heldItemMainhand else if (player.heldItemOffhand?.item == ItemWaypointCompass) player.heldItemOffhand else null
 			if (compass != null && compass.hasWaypoint) {
 				val dimension = compass.waypointDimension
 				if (player.dimension == dimension) {
