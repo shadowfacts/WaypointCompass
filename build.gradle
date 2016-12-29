@@ -26,7 +26,7 @@ minecraft {
 
 	mappings = mcp_mappings
 
-	replaceIn "WaypointCompassss.kt"
+	replaceIn "WaypointCompass.kt"
 	replace "@VERSION@", mod_version
 }
 
