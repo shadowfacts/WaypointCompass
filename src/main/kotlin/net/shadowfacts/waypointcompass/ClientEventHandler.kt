@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.client.renderer.tileentity.TileEntityBeaconRenderer.TEXTURE_BEACON_BEAM
 import net.minecraft.client.renderer.tileentity.TileEntityBeaconRenderer.renderBeamSegment
+import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.world.World
 import net.minecraftforge.client.event.RenderWorldLastEvent
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
@@ -27,23 +28,35 @@ object ClientEventHandler {
 				val dimension = compass.waypointDimension
 				if (player.dimension == dimension) {
 					val waypoint = compass.waypoint
-					renderBeaconSegment(waypoint.x.toDouble(), 0.0, waypoint.z.toDouble(), event.partialTicks.toDouble(), 1.0, world)
+					prepare(player, event.partialTicks)
+					renderBeaconSegment(waypoint.x.toDouble(), 0.0, waypoint.z.toDouble(), event.partialTicks.toDouble(), world)
+					clean()
 				}
 			}
 		}
 	}
 
-	private fun renderBeaconSegment(x: Double, y: Double, z: Double, partialTicks: Double, textureScale: Double, world: World) {
+	private fun prepare(player: EntityPlayer, partialTicks: Float) {
+		val x = -(player.lastTickPosX + (player.posX - player.lastTickPosX) * partialTicks)
+		val y = -(player.lastTickPosY + (player.posY - player.lastTickPosY) * partialTicks)
+		val z = -(player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * partialTicks)
+
+		GlStateManager.pushAttrib()
+		GlStateManager.pushMatrix()
+
+		GlStateManager.translate(x, y, z)
+	}
+
+	private fun clean() {
+		GlStateManager.popMatrix()
+		GlStateManager.popAttrib()
+	}
+
+	private fun renderBeaconSegment(x: Double, y: Double, z: Double, partialTicks: Double, world: World) {
 		GlStateManager.alphaFunc(516, 0.1f)
 		Minecraft.getMinecraft().textureManager.bindTexture(TEXTURE_BEACON_BEAM)
 
-		if (textureScale > 0) {
-			GlStateManager.disableFog()
-
-			renderBeamSegment(x, y, z, partialTicks, textureScale, world.totalWorldTime.toDouble(), 0, 256, floatArrayOf(1f, 1f, 1f))
-
-			GlStateManager.enableFog()
-		}
+		renderBeamSegment(x, y, z, partialTicks, 1.0, world.totalWorldTime.toDouble(), 0, 256, floatArrayOf(1f, 1f, 1f))
 	}
 
 }
