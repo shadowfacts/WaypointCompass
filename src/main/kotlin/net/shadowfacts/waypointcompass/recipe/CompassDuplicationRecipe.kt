@@ -7,7 +7,7 @@ import net.minecraft.item.crafting.IRecipe
 import net.minecraft.util.NonNullList
 import net.minecraft.world.World
 import net.minecraftforge.oredict.OreDictionary
-import net.shadowfacts.waypointcompass.WaypointCompass
+import net.shadowfacts.waypointcompass.item.ItemWaypointCompass
 
 /**
  * @author shadowfacts
@@ -27,7 +27,7 @@ object CompassDuplicationRecipe: IRecipe {
 				inv.getStackInRowAndColumn(0, 2).item == Items.COMPASS &&
 //				row 2
 				isIngotGold(inv.getStackInRowAndColumn(1, 0)) &&
-				inv.getStackInRowAndColumn(1, 1).item == WaypointCompass.compass &&
+				inv.getStackInRowAndColumn(1, 1).item == ItemWaypointCompass &&
 				isIngotGold(inv.getStackInRowAndColumn(1, 2)) &&
 //				row 3
 				inv.getStackInRowAndColumn(2, 0).item == Items.COMPASS &&
@@ -44,7 +44,7 @@ object CompassDuplicationRecipe: IRecipe {
 	}
 
 	override fun getRecipeOutput(): ItemStack {
-		return ItemStack(WaypointCompass.compass)
+		return ItemStack(ItemWaypointCompass)
 	}
 
 	override fun getRemainingItems(inv: InventoryCrafting): NonNullList<ItemStack> {

@@ -23,7 +23,7 @@ import net.shadowfacts.waypointcompass.util.waypointDimension
 /**
  * @author shadowfacts
  */
-class ItemWaypointCompass: Item(), ItemModelProvider {
+object ItemWaypointCompass: Item(), ItemModelProvider {
 
 	init {
 		setRegistryName("compass")
