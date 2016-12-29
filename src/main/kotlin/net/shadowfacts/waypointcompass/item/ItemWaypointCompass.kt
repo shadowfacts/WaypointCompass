@@ -2,6 +2,7 @@ package net.shadowfacts.waypointcompass.item
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
 import net.minecraft.client.resources.I18n
+import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.item.EntityItemFrame
@@ -28,6 +29,7 @@ object ItemWaypointCompass: Item(), ItemModelProvider {
 	init {
 		setRegistryName("compass")
 		unlocalizedName = registryName.toString()
+		creativeTab = CreativeTabs.TOOLS
 
 		this.addPropertyOverride(ResourceLocation("angle"), object: IItemPropertyGetter {
 			private var rotation = 0.0
