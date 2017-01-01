@@ -17,7 +17,7 @@ object Config {
 		get() = config.getBoolean("waypointcompass.renderWaypointInWorld")
 
 	fun init(configDir: File) {
-		val f = File(configDir, "shadowfacts/ProjectLiftoff.conf")
+		val f = File(configDir, "shadowfacts/WaypointCompass.conf")
 		if (!f.parentFile.exists()) {
 			f.parentFile.mkdirs()
 		}
