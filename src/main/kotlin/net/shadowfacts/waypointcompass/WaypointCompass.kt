@@ -19,6 +19,8 @@ object WaypointCompass {
 
 	@Mod.EventHandler
 	fun preInit(event: FMLPreInitializationEvent) {
+		Config.init(event.modConfigurationDirectory)
+
 		GameRegistry.register(ItemWaypointCompass)
 		GameRegistry.addRecipe(ShapedOreRecipe(ItemWaypointCompass, "cgc", "g g", "cgc", 'g', "ingotGold", 'c', Items.COMPASS))
 		GameRegistry.addRecipe(CompassDuplicationRecipe)
