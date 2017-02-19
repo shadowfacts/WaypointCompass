@@ -20,7 +20,7 @@ object CompassDuplicationRecipe: IRecipe {
 		return !stack.isEmpty && OreDictionary.getOreIDs(stack).contains(INGOT_GOLD)
 	}
 
-	override fun matches(inv: InventoryCrafting, world: World): Boolean {
+	override fun matches(inv: InventoryCrafting, world: World?): Boolean {
 //				row 1
 		return inv.getStackInRowAndColumn(0, 0).item == Items.COMPASS &&
 				isIngotGold(inv.getStackInRowAndColumn(0, 1)) &&
