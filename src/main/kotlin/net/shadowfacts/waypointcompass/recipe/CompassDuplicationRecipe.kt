@@ -7,14 +7,19 @@ import net.minecraft.item.crafting.IRecipe
 import net.minecraft.util.NonNullList
 import net.minecraft.world.World
 import net.minecraftforge.oredict.OreDictionary
+import net.shadowfacts.shadowmc.recipe.RecipeBase
 import net.shadowfacts.waypointcompass.item.ItemWaypointCompass
 
 /**
  * @author shadowfacts
  */
-object CompassDuplicationRecipe: IRecipe {
+object CompassDuplicationRecipe: RecipeBase() {
 
 	private val INGOT_GOLD = OreDictionary.getOreID("ingotGold")
+
+	init {
+		setRegistryName("compass_duplication")
+	}
 
 	private fun isIngotGold(stack: ItemStack): Boolean {
 		return !stack.isEmpty && OreDictionary.getOreIDs(stack).contains(INGOT_GOLD)
@@ -39,8 +44,8 @@ object CompassDuplicationRecipe: IRecipe {
 		return inv.getStackInRowAndColumn(1, 1).copy()
 	}
 
-	override fun getRecipeSize(): Int {
-		return 9
+	override fun canFit(width: Int, height: Int): Boolean {
+		return width >= 3 && height >= 3
 	}
 
 	override fun getRecipeOutput(): ItemStack {

@@ -1,0 +1,20 @@
+{
+	"type": "forge:ore_shaped",
+	"pattern": [
+		"cgc",
+		"g g",
+		"cgc"
+	],
+	"key": {
+		"c": {
+			"item": "minecraft:compass"
+		},
+		"g": {
+			"type": "forge:ore_dict",
+			"ore": "ingotGold"
+		}
+	},
+	"result": {
+		"item": "waypointcompass:compass"
+	}
+}

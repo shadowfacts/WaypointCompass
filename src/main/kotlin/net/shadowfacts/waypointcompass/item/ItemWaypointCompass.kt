@@ -2,6 +2,7 @@ package net.shadowfacts.waypointcompass.item
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
 import net.minecraft.client.resources.I18n
+import net.minecraft.client.util.ITooltipFlag
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.entity.Entity
 import net.minecraft.entity.EntityLivingBase
@@ -15,6 +16,7 @@ import net.minecraft.util.math.MathHelper
 import net.minecraft.world.World
 import net.minecraftforge.client.model.ModelLoader
 import net.minecraftforge.fml.relauncher.SideOnly
+import net.shadowfacts.shadowmc.item.ItemBase
 import net.shadowfacts.shadowmc.item.ItemModelProvider
 import net.shadowfacts.waypointcompass.MOD_ID
 import net.shadowfacts.waypointcompass.util.hasWaypoint
@@ -24,11 +26,9 @@ import net.shadowfacts.waypointcompass.util.waypointDimension
 /**
  * @author shadowfacts
  */
-object ItemWaypointCompass: Item(), ItemModelProvider {
+object ItemWaypointCompass: ItemBase("compass") {
 
 	init {
-		setRegistryName("compass")
-		unlocalizedName = registryName.toString()
 		creativeTab = CreativeTabs.TOOLS
 
 		this.addPropertyOverride(ResourceLocation("angle"), object: IItemPropertyGetter {
@@ -99,7 +99,7 @@ object ItemWaypointCompass: Item(), ItemModelProvider {
 		return ActionResult(EnumActionResult.PASS, stack)
 	}
 
-	override fun addInformation(stack: ItemStack, player: EntityPlayer, tooltip: MutableList<String>, advanced: Boolean) {
+	override fun addInformation(stack: ItemStack, world: World?, tooltip: MutableList<String>, flag: ITooltipFlag) {
 		if (stack.hasWaypoint) {
 			val waypoint = stack.waypoint
 			tooltip.add(I18n.format("$unlocalizedName.waypoint", waypoint.x, waypoint.z, stack.waypointDimension))
