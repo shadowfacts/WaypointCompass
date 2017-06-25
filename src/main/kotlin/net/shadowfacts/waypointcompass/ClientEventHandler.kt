@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.tileentity.TileEntityBeaconRenderer.renderB
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.world.World
 import net.minecraftforge.client.event.RenderWorldLastEvent
+import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.shadowfacts.waypointcompass.item.ItemWaypointCompass
 import net.shadowfacts.waypointcompass.util.hasWaypoint
@@ -16,8 +17,10 @@ import net.shadowfacts.waypointcompass.util.waypointDimension
 /**
  * @author shadowfacts
  */
+@Mod.EventBusSubscriber(modid = MOD_ID)
 object ClientEventHandler {
 
+	@JvmStatic
 	@SubscribeEvent
 	fun renderWorldLast(event: RenderWorldLastEvent) {
 		if (Config.renderWaypointInWorld) {

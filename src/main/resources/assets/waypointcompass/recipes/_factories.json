@@ -1,0 +1,5 @@
+{
+	"recipes": {
+		"compass_duplication": "net.shadowfacts.waypointcompass.recipe.CompassDuplicationRecipe$Factory"
+	}
+}

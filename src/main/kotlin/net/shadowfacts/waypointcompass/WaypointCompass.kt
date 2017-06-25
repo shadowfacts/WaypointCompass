@@ -1,13 +1,12 @@
 package net.shadowfacts.waypointcompass
 
-import net.minecraftforge.common.MinecraftForge
+import net.minecraft.item.Item
+import net.minecraftforge.client.event.ModelRegistryEvent
+import net.minecraftforge.event.RegistryEvent
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent
-import net.minecraftforge.fml.common.registry.GameRegistry
-import net.minecraftforge.fml.relauncher.Side
-import net.minecraftforge.fml.relauncher.SideOnly
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.shadowfacts.waypointcompass.item.ItemWaypointCompass
-import net.shadowfacts.waypointcompass.recipe.CompassDuplicationRecipe
 
 /**
  * @author shadowfacts
@@ -18,16 +17,28 @@ object WaypointCompass {
 	@Mod.EventHandler
 	fun preInit(event: FMLPreInitializationEvent) {
 		Config.init(event.modConfigurationDirectory)
-
-		GameRegistry.register(ItemWaypointCompass)
-		GameRegistry.register(CompassDuplicationRecipe)
 	}
 
-	@Mod.EventHandler
-	@SideOnly(Side.CLIENT)
-	fun preInitClient(event: FMLPreInitializationEvent) {
-		ItemWaypointCompass.initItemModel()
-		MinecraftForge.EVENT_BUS.register(ClientEventHandler)
+	@Mod.EventBusSubscriber
+	object RegistrationHandler {
+
+		@JvmStatic
+		@SubscribeEvent
+		fun registerItems(event: RegistryEvent.Register<Item>) {
+			event.registry.register(ItemWaypointCompass)
+		}
+
+	}
+
+	@Mod.EventBusSubscriber
+	object ClientRegistrationHandler {
+
+		@JvmStatic
+		@SubscribeEvent
+		fun registerModels(event: ModelRegistryEvent) {
+			ItemWaypointCompass.initItemModel()
+		}
+
 	}
 
 }

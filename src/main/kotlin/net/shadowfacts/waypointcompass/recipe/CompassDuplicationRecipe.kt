@@ -1,11 +1,14 @@
 package net.shadowfacts.waypointcompass.recipe
 
+import com.google.gson.JsonObject
 import net.minecraft.init.Items
 import net.minecraft.inventory.InventoryCrafting
 import net.minecraft.item.ItemStack
 import net.minecraft.item.crafting.IRecipe
 import net.minecraft.util.NonNullList
 import net.minecraft.world.World
+import net.minecraftforge.common.crafting.IRecipeFactory
+import net.minecraftforge.common.crafting.JsonContext
 import net.minecraftforge.oredict.OreDictionary
 import net.shadowfacts.shadowmc.recipe.RecipeBase
 import net.shadowfacts.waypointcompass.item.ItemWaypointCompass
@@ -13,13 +16,9 @@ import net.shadowfacts.waypointcompass.item.ItemWaypointCompass
 /**
  * @author shadowfacts
  */
-object CompassDuplicationRecipe: RecipeBase() {
+class CompassDuplicationRecipe: RecipeBase() {
 
 	private val INGOT_GOLD = OreDictionary.getOreID("ingotGold")
-
-	init {
-		setRegistryName("compass_duplication")
-	}
 
 	private fun isIngotGold(stack: ItemStack): Boolean {
 		return !stack.isEmpty && OreDictionary.getOreIDs(stack).contains(INGOT_GOLD)
@@ -56,6 +55,12 @@ object CompassDuplicationRecipe: RecipeBase() {
 		val list = NonNullList.withSize(9, ItemStack.EMPTY)
 		list[4] = inv.getStackInRowAndColumn(1, 1).copy()
 		return list
+	}
+
+	class Factory: IRecipeFactory {
+
+		override fun parse(context: JsonContext, json: JsonObject) = CompassDuplicationRecipe()
+
 	}
 
 }
